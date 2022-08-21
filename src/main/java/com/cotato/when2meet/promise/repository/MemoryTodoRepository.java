@@ -1,9 +1,12 @@
-package com.cotato.when2meet.promise.todo;
+package com.cotato.when2meet.promise.repository;
+
+import com.cotato.when2meet.promise.repository.TodoRepository;
+import com.cotato.when2meet.promise.todo.Todo;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class MemoryTodoRepository implements TodoRepository{
+public class MemoryTodoRepository implements TodoRepository {
 
     private static Map<Long, Todo> store = new HashMap<>();
 
