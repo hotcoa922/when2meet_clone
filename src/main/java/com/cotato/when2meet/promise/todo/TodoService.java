@@ -1,10 +1,10 @@
-package com.cotato.when2meet.promise.service;
+package com.cotato.when2meet.promise.todo;
 
-import com.cotato.when2meet.promise.todo.Todo;
+import com.cotato.when2meet.promise.member.Member;
 
 import java.util.List;
 
-public interface TodoListService {
+public interface TodoService {
     void join_todo(Todo todo); // 일정 생성
     Todo findTodo(Long todoId); // 일정 조회
     void join_member(Long memberId, Long todoId); // 회원 추가
