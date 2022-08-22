@@ -1,21 +1,10 @@
 package com.cotato.when2meet.promise.todo;
 
-import lombok.Getter;
-import lombok.Setter;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
-@Entity
 public class Todo {
     private List<Long> memberIdList = new ArrayList<>(); // 여러명의 사용자를 가짐
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long todoId;
     private String todoName;
     private Long startDate;
@@ -40,4 +29,35 @@ public class Todo {
         this.memberIdList.remove(memberId);
     }
 
+    public Long getTodoId() {
+        return todoId;
+    }
+
+    public void setTodoId(Long todoId) {
+        this.todoId = todoId;
+    }
+
+    public String getTodoName() {
+        return todoName;
+    }
+
+    public void setTodoName(String todoName) {
+        this.todoName = todoName;
+    }
+
+    public Long getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Long startDate) {
+        this.startDate = startDate;
+    }
+
+    public Long getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Long endDate) {
+        this.endDate = endDate;
+    }
 }

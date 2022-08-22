@@ -1,12 +1,9 @@
-package com.cotato.when2meet.promise.repository;
-
-import com.cotato.when2meet.promise.member.Member;
-import com.cotato.when2meet.promise.repository.MemberRepository;
+package com.cotato.when2meet.promise.member;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class MemoryMemberRepository implements MemberRepository {
+public class MemoryMemberRepository implements MemberRepository{
 
     private static Map<Long, Member> store = new HashMap<>();
     @Override

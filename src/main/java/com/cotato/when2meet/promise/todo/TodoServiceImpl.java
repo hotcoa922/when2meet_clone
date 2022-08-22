@@ -1,12 +1,9 @@
 package com.cotato.when2meet.promise.todo;
 
-import com.cotato.when2meet.promise.repository.MemberRepository;
-import com.cotato.when2meet.promise.repository.TodoRepository;
+import com.cotato.when2meet.promise.member.MemberRepository;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
-@Transactional
 public class TodoServiceImpl implements TodoService{
     private final MemberRepository memberRepository;
     private final TodoRepository todoRepository;
