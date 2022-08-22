@@ -1,23 +1,23 @@
 package com.cotato.when2meet.promise.member;
 
+import com.cotato.when2meet.promise.model.Promisewho;
+import com.cotato.when2meet.promise.service.MemberService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest // 이게 있어야 스프링 빈 객체 사용 가능
-class MemberServiceTest {
+class PromisewhoServiceTest {
     @Autowired
     MemberService memberService;
 
     @Test
     void 회원_가입(){
         // given
-        Member member = new Member(1L, "memberA");
+        Promisewho promisewho = new Promisewho(1L, "memberA");
         // when
-        memberService.join(member);
+        memberService.join(promisewho);
         // then
         Assertions.assertThat(memberService.findMember(1L).getName()).isEqualTo("memberA");
     }
