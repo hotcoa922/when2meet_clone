@@ -1,14 +1,29 @@
 package com.cotato.when2meet.promise.model;
 
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.sql.Timestamp;
 
-public class Promisecheck {
+@Getter
+@Setter
+@Entity
+public class PromiseCheck {
 
     @Id
-    private String ID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long ID;
 
-    private java.sql.Timestamp T_C; //잘 모르겠음
+    private Timestamp T_C; //시간선택(시작시간 기준 1시간단위)
 
+    @Builder
+    public PromiseCheck(Timestamp T_C){
+        this.T_C = T_C;
+    }
 }
