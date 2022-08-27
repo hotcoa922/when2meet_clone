@@ -1,16 +1,10 @@
 package com.cotato.when2meet.promise.service;
 
 import com.cotato.when2meet.promise.model.Promise;
-import com.cotato.when2meet.promise.model.User;
-import com.cotato.when2meet.promise.repository.CheckRepository;
-import com.cotato.when2meet.promise.repository.PromiseRepository;
-import com.cotato.when2meet.promise.repository.UserRepository;
+import com.cotato.when2meet.promise.model.PromiseRepository;
 import com.cotato.when2meet.promise.web.dto.PromiseCreationRequestDto;
 import com.cotato.when2meet.promise.web.dto.PromiseResponseDto;
-import com.cotato.when2meet.promise.web.dto.UserCreationRequestDto;
-import com.cotato.when2meet.promise.web.dto.UserResponseDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;

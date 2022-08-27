@@ -2,8 +2,7 @@ package com.cotato.when2meet.promise.config.auth;
 
 
 //config.auth패키지에 시큐리티 관련 클래스 생성
-
-import com.cotato.when2meet.promise.model.googleuser.Googlerole;
+import com.cotato.when2meet.promise.model.googleuser.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -11,11 +10,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @RequiredArgsConstructor
 @EnableWebSecurity      //스프링 시큐리티 설정 활성화
-public class SecurtiyConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final CustomOAuth2GoogleloginService customOAuth2GoogleloginService;
-
-
+    private final CustomOAuth2UserService customOAuth2UserService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -25,7 +22,7 @@ public class SecurtiyConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**", "/profile").permitAll()
-                .antMatchers("/api/v1/**").hasRole(Googlerole.USER.name())
+                .antMatchers("/api/v1/**").hasRole(Role.USER.name())
                 .anyRequest().authenticated()
                 .and()
                 .logout()
@@ -33,7 +30,7 @@ public class SecurtiyConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .oauth2Login()
                 .userInfoEndpoint()
-                .userService(customOAuth2GoogleloginService);
+                .userService(customOAuth2UserService);
     }
 }
 
@@ -45,7 +42,7 @@ public class SecurtiyConfig extends WebSecurityConfigurerAdapter {
  - .logout().logoutSuccessUrl("/") -> 로그아웃 기능에 대한 설정의 진입점, 로그아웃 성공시 "/"주소로 리다이렉트함
  - .userInfoEndpoint() -> 로그인 성공 시 후속조치를 진행할 userService인터페이스의 구현체를 등록
 
- 설정코드는 여기까지고 CustomOAuth2GoogleloginService클래스를 생성
+ 설정코드는 여기까지고 CustomOAuth2UserService클래스를 생성
 
 
  */

@@ -3,10 +3,10 @@ package com.cotato.when2meet.promise.model.googleuser;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-//각 사용자의 권한을 관리할 Enum 클래스 Googlerole 클래스 생성
+//각 사용자의 권한을 관리할 Enum 클래스 Role 클래스 생성
 @Getter
 @RequiredArgsConstructor
-public enum Googlerole {
+public enum Role {
 
     GUEST("ROLE_GUEST", "손님"),
     USER("ROLE_USER", "일반 사용자");

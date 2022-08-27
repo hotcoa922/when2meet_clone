@@ -1,9 +1,9 @@
 package com.cotato.when2meet.promise.config.auth;
 
-import com.cotato.when2meet.promise.model.googleuser.Googlelogin;
-import com.cotato.when2meet.promise.repository.GoogleuserRepository;
-import com.cotato.when2meet.promise.web.dto.OAuthAttributes;
-import com.cotato.when2meet.promise.web.dto.SessionUser;
+import com.cotato.when2meet.promise.model.User;
+import com.cotato.when2meet.promise.model.UserRepository;
+import com.cotato.when2meet.promise.config.auth.dto.OAuthAttributes;
+import com.cotato.when2meet.promise.config.auth.dto.SessionUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -19,14 +19,14 @@ import java.util.Collections;
 
 @RequiredArgsConstructor
 @Service
-public class CustomOAuth2GoogleloginService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
+public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
 
-    private final GoogleuserRepository googleuserRepository;
+    private final UserRepository userRepository;
     private final HttpSession httpSession;
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
-        OAuth2UserService delegate = new DefaultOAuth2UserService();
+        OAuth2UserService<OAuth2UserRequest,OAuth2User> delegate = new DefaultOAuth2UserService();
         OAuth2User oAuth2User = delegate.loadUser(userRequest);
 
         //어떤 서비스에서 로그인하는지 확인
@@ -38,21 +38,21 @@ public class CustomOAuth2GoogleloginService implements OAuth2UserService<OAuth2U
 
         OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
 
-        Googlelogin googlelogin = saveOrUpdate(attributes);
-        httpSession.setAttribute("user", new SessionUser(googlelogin));
+        User user = saveOrUpdate(attributes);
+        httpSession.setAttribute("user", new SessionUser(user));
 
         return new DefaultOAuth2User(
-                Collections.singleton(new SimpleGrantedAuthority(googlelogin.getRoleKey())),
+                Collections.singleton(new SimpleGrantedAuthority(user.getRoleKey())),
                 attributes.getAttributes(),
                 attributes.getNameAttributeKey());
     }
 
 
-    private Googlelogin saveOrUpdate(OAuthAttributes attributes) {
-        Googlelogin googlelogin = googleuserRepository.findByEmail(attributes.getEmail())
+    private User saveOrUpdate(OAuthAttributes attributes) {
+        User user = userRepository.findByEmail(attributes.getEmail())
                 .map(entity -> entity.update(attributes.getName(), attributes.getPicture()))
                 .orElse(attributes.toEntity());
 
-        return googleuserRepository.save(googlelogin);
+        return userRepository.save(user);
     }
 }
