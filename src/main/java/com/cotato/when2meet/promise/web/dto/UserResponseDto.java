@@ -7,10 +7,10 @@ import lombok.Getter;
 @Getter
 public class UserResponseDto {
     private Long id;
-    private String U_ID;
+    private String name;
 
     public UserResponseDto(User entity){
-        this.id = entity.getID();
-        this.U_ID = entity.getU_ID();
+        this.id = entity.getId();
+        this.name = entity.getName();
     }
 }

@@ -1,6 +1,6 @@
 package com.cotato.when2meet.promise;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest

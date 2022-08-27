@@ -1,33 +1,62 @@
 package com.cotato.when2meet.promise.model;
 
+import com.cotato.when2meet.promise.model.googleuser.Role;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
-@Entity
 @NoArgsConstructor
+@Entity
+/*
+Entity : 테이블과 링크될 클래스임을 나타낸다.
+기본값으로 클래스의 카멜케이스 이름을 언더스코어 네이밍으로 테이블 이름을 매칭한다.
+ex. UserManager.java -> user_manager table
+*/
 // BaseTimeEntity 를 상속받아 엔티티 객체 생성 및 변경시 마다 시간 기록
 public class User extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ID;
+    private Long id;
 
-    private String U_ID;
+    @Column(nullable = false)
+    private String name;
 
-    // 생성자가 많은 경우 @Builder 을 통해 일관성있는 빌더 패턴을 제공
-    @Builder // Lombok, 해당 클래스의 빌더 패턴 클래스를 생성, 생성자에 포함된 필드만 빌더에 포함
-    public User(String U_ID){
-        this.U_ID = U_ID;
+    @Column(nullable = false)
+    private String email;
+
+    @Column
+    private String picture;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
+
+
+
+    @Builder
+    public User(String name, String email, String picture, Role role){
+        this.name = name;
+        this.email = email;
+        this.picture = picture;
+        this.role = role;
     }
 
+
+
+
+    public User update(String name, String picture){
+        this.name = name;
+        this.picture = picture;
+        return this;
+    }
+
+    public String getRoleKey() {
+        return this.role.getKey();  //왜 안되는지 모르겠다.
+    }
 
 }
 
