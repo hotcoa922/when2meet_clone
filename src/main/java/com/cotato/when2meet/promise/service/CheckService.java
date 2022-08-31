@@ -6,8 +6,7 @@ import com.cotato.when2meet.promise.web.dto.CheckCreationRequestDto;
 import com.cotato.when2meet.promise.web.dto.CheckResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 // Required : final 이 붙거나 @NotNull 이 붙은 필드의 생성자를 자동 생성
@@ -17,8 +16,8 @@ public class CheckService {
     private final CheckRepository checkRepository;
 
 
-    public PromiseCheck createCheck(CheckCreationRequestDto checkDto){
-        return checkRepository.save(checkDto.toEntity());
+    public Long createCheck(CheckCreationRequestDto checkDto){
+        return checkRepository.save(checkDto.toEntity()).getID();
     }
 
     public CheckResponseDto findCheck(Long id){

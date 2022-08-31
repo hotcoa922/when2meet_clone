@@ -3,8 +3,8 @@
 <div class="col-md-12">
     <div class="row">
         <div class="col-md-6">
-            <a href="/posts/save" role="botton"
-               class="btn btn-primary">글 등록</a>
+            <a href="/promise/save" role="botton"
+               class="btn btn-primary">일정 추가</a>
             {{#userName}}
                 Logged in as: <span id="user">{{userName}}</span>
                 <a href="/logout" class="btn btn-info active"
@@ -22,21 +22,21 @@
     <table class="table table-horizontal table-bordered">
         <thead class="thead-strong">
         <tr>
-            <th>게시글번호</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>최종수정일</th>
+            <th>일정번호</th>
+            <th>일정이름</th>
+            <th>일정 시작일</th>
+            <th>일정 종료일</th>
         </tr>
         </thead>
         <tbody id="tbody">
-        {{#posts}}
+        {{#promise}}
             <tr>
                 <td>{{id}}</td>
-                <td><a href="/posts/update/{{id}}">{{title}}</a></td>
-                <td>{{author}}</td>
-                <td>{{modifiedDate}}</td>
+                <td>{{N_NE}}</a></td>
+                <td>{{WD_S}}</td>
+                <td>{{WD_E}}</td>
             </tr>
-        {{/posts}}
+        {{/promise}}
         </tbody>
     </table>
 </div>

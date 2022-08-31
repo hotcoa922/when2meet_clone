@@ -13,7 +13,7 @@ public class PromiseListResponseDto {
     public PromiseListResponseDto(Promise entity){
         this.id = entity.getId();
         this.N_NE = entity.getN_NE();
-        this.WD_E = entity.getWD_E();
         this.WD_S = entity.getWD_S();
+        this.WD_E = entity.getWD_E();
     }
 }

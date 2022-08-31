@@ -68,15 +68,15 @@ public class PromiseApiControllerTest {
     @Test
     public void 약속생성_불러오기() throws Exception{
         // given
-        String name = "PromiseA";
-        String WD_S = "220831";
-        String WD_E = "220906";
+        String name_A = "PromiseA";
+        String WD_S_A = "220831";
+        String WD_E_A = "220906";
 
-        PromiseCreationRequestDto requestDto = PromiseCreationRequestDto
+        PromiseCreationRequestDto promiseCreationRequestDto = PromiseCreationRequestDto
                 .builder()
-                .N_NE(name)
-                .WD_S(WD_S)
-                .WD_E(WD_E)
+                .N_NE(name_A)
+                .WD_S(WD_S_A)
+                .WD_E(WD_E_A)
                 .build();
 
         String url = "http://localhost:" + port + "/api/v1/promise";
@@ -85,7 +85,7 @@ public class PromiseApiControllerTest {
 
         mvc.perform(post(url)
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
-                        .content(new ObjectMapper().writeValueAsString(requestDto)))
+                        .content(new ObjectMapper().writeValueAsString(promiseCreationRequestDto)))
                 .andExpect(status().isOk());
 
         //then

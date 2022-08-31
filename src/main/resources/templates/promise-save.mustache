@@ -1,0 +1,28 @@
+{{>layout/header}}
+
+<h1>일정 추가</h1>
+
+<div class="col-md-12">
+    <div class="col-md-4">
+        <form>
+            <div class="form-group">
+                <label for="N_NE"> 일정 이름</label>
+                <input type="text" class="form-control"
+                       id="N_NE" placeholder="일정 이름을 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="WD_S"> 시작 시각</label>
+                <input type="text" class="form-control"
+                       id="WD_S" placeholder="시작 시각 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="WD_E"> 종료 시각</label>
+                <input type="text" class="form-control"
+                       id="WD_E" placeholder="종료 시각을 입력하세요"></textarea>
+            </div>
+        </form>
+        <a href="/" role="button" class="btn btn-secondary">취소</a>
+        <button type="button" class="btn btn-primary" id="btn-save">등록</button>
+    </div>
+</div>
+{{>layout/footer}}
