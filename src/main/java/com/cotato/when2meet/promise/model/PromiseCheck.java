@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import java.sql.Timestamp;
 
 @Getter
-@Setter
 @Entity
 public class PromiseCheck {
 

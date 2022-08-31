@@ -34,4 +34,9 @@ public class IndexController {
         }
         return "index";
     }
+
+    @GetMapping("/promise/save")
+    public String promiseSave(){
+        return "promise-save";
+    }
 }

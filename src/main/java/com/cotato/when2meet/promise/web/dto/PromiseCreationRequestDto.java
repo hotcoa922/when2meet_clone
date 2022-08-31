@@ -15,15 +15,15 @@ public class PromiseCreationRequestDto {
     @Builder
     public PromiseCreationRequestDto(String N_NE, String WD_S, String WD_E){
         this.N_NE = N_NE;
-        this.WD_E = WD_E;
         this.WD_S = WD_S;
+        this.WD_E = WD_E;
     }
 
     public Promise toEntity(){
         return Promise.builder()
                 .N_NE(N_NE)
-                .WD_E(WD_E)
                 .WD_S(WD_S)
+                .WD_E(WD_E)
                 .build();
     }
 }
