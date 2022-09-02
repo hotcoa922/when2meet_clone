@@ -6,14 +6,14 @@ import lombok.Getter;
 @Getter
 public class PromiseListResponseDto {
     private Long id;
-    private String N_NE;
-    private String WD_S;
-    private String WD_E;
+    private String name;
+    private String startDate;
+    private String endDate;
 
     public PromiseListResponseDto(Promise entity){
         this.id = entity.getId();
-        this.N_NE = entity.getN_NE();
-        this.WD_S = entity.getWD_S();
-        this.WD_E = entity.getWD_E();
+        this.name = entity.getName();
+        this.startDate = entity.getStartDate();
+        this.endDate = entity.getEndDate();
     }
 }

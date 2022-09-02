@@ -9,24 +9,25 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity
+@Table(name = "promise")
 public class Promise {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String N_NE;    //약속이름
-    @Column(nullable = false)
-    private String WD_S;      //약속기간 중 시작날
-    @Column(nullable = false)
-    private String WD_E;      //약속기간 중 마지막날
+    
+    private String name;    //약속이름
+
+    private String startDate;      //약속기간 중 시작날
+
+    private String endDate;      //약속기간 중 마지막날
 
     @Builder
-    public Promise(String N_NE, String WD_S, String WD_E){
-        this.N_NE = N_NE;
-        this.WD_S = WD_S;
-        this.WD_E = WD_E;
+    public Promise(String name, String startDate, String endDate){
+        this.name = name;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
 

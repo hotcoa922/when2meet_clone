@@ -17,7 +17,7 @@ public class CheckService {
 
 
     public Long createCheck(CheckCreationRequestDto checkDto){
-        return checkRepository.save(checkDto.toEntity()).getID();
+        return checkRepository.save(checkDto.toEntity()).getId();
     }
 
     public CheckResponseDto findCheck(Long id){
