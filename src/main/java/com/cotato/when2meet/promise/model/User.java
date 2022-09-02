@@ -9,6 +9,7 @@ import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
+@Table(name = "user")
 @Entity
 /*
 Entity : 테이블과 링크될 클래스임을 나타낸다.

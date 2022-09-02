@@ -67,7 +67,7 @@ public class UserApiTest {
     @Test
     public void 유저생성_불러오기() throws Exception{
         // given
-        String name = "UserA";
+        String name = "userA";
         String email = "wpals113@snu.ac.kr";
         String picture = "picture";
 

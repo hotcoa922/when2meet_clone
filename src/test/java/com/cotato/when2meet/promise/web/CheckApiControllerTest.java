@@ -1,10 +1,9 @@
 package com.cotato.when2meet.promise.web;
 
-import com.cotato.when2meet.promise.model.Promise;
-import com.cotato.when2meet.promise.model.PromiseRepository;
-import com.cotato.when2meet.promise.model.UserRepository;
+import com.cotato.when2meet.promise.model.*;
 import com.cotato.when2meet.promise.web.dto.PromiseCreationRequestDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,19 +17,22 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.*;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class PromiseApiControllerTest {
-
+public class CheckApiControllerTest {
 
     @LocalServerPort
     private int port;
@@ -38,13 +40,12 @@ public class PromiseApiControllerTest {
     @Autowired
     private TestRestTemplate restTemplate;
     @Autowired
-    PromiseRepository promiseRepository;
-    UserRepository userRepository;
+    CheckRepository checkRepository;
 
     // 단위 테스트마다 수행되는 메소드 지정(H2 초기화)
     @After
     public void cleanup() throws Exception{
-        promiseRepository.deleteAll();
+        checkRepository.deleteAll();
     }
 
     // 시큐리티를 위해 MOCK 설정 부분이 들어가야함
@@ -66,11 +67,13 @@ public class PromiseApiControllerTest {
     // 시큐리티 때문에 ROLE 부여한 테스트가 되어야 함.
     @WithMockUser(roles="USER")
     @Test
-    public void 약속생성_불러오기() throws Exception{
+    public void 시간체크생성_불러오기() throws Exception{
         // given
         String name = "promiseA";
         String startDate = "220831";
         String endDate = "220906";
+
+        // Timestamp checkBlockA = new Timestamp();
 
         PromiseCreationRequestDto requestDto = PromiseCreationRequestDto
                 .builder()
@@ -90,13 +93,8 @@ public class PromiseApiControllerTest {
 
         //then
 
-        List<Promise> all = promiseRepository.findAll();
-        assertThat(all.get(0).getName()).isEqualTo(name);
+        List<PromiseCheck> all = checkRepository.findAll();
+        // assertThat(all.get(0).getTimeBlock()).isEqualTo(checkBlockA);
     }
 
-    @WithMockUser(roles="USER")
-    @Test
-    public void 약속_조회하기(){
-        //given
-    }
 }
